@@ -1,0 +1,54 @@
+/* כרטיס פרטי טיול */
+.card-details {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 20px;
+    margin: 20px auto;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 80%; /* רוחב קבוע לכרטיס */
+  }
+  
+  .card-details h1 {
+    font-size: 2rem;
+    margin: 0 0 10px;
+  }
+  
+  .card-details img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+  }
+  
+  .card-details p {
+    font-size: 1.2rem;
+    margin: 0 0 10px;
+  }
+  
+  .card-details ul {
+    list-style-type: disc;
+    margin-left: 20px;
+    padding: 0;
+  }
+  
+  .card-details li {
+    font-size: 1rem;
+    margin: 0 0 5px;
+  }
+  
+  .card-details button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    margin-top: 20px;
+    cursor: pointer;
+    border-radius: 3px;
+    font-size: 1.2rem;
+  }
+  
+  .card-details button:hover {
+    background-color: #0056b3;
+  }
+  
