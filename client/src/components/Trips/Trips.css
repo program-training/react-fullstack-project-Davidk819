@@ -1,4 +1,4 @@
-/* כרטיסים */
+
 .trip-card {
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -6,9 +6,9 @@
     margin: 10px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease-in-out;
-    width: 300px; /* הוספנו רוחב קבוע לכרטיס */
-    display: inline-block; /* הוספנו תצוגה כבריכוז אחרי אחד */
-    vertical-align: top; /* הוספנו סידור אנכי לכרטיסים */
+    width: 300px;
+    display: inline-block; 
+    vertical-align: top; /
   }
   
   .trip-card:hover {
@@ -34,8 +34,7 @@
     cursor: pointer;
     border-radius: 3px;
   }
-  
-  /* טופס למחיקת כרטיס */
+
   .delete-form {
     display: flex;
     flex-direction: column;

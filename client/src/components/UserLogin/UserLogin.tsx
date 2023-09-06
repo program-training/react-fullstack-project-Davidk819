@@ -1,8 +1,23 @@
 import "./UserLogin.css";
 import { useContext, useState } from "react";
 import { UsePageContext } from "../ContextPage/ContextPage";
+import { TokenContext } from "../ContextToken/ContextToken";
+interface LoginResponse {
+  message: string;
+  responseObj: {
+    user: {
+      id: string;
+      email: string;
+      password: string;
+    };
+    token: string;
+  };
+}
 
 export default function LoginForm() {
+  const contextToken = useContext(TokenContext);
+  if (!contextToken) return null;
+  const { token, setToken } = contextToken;
   const context = useContext(UsePageContext);
   if (!context) return null;
   const { setCurrentPage } = context;
@@ -16,10 +31,16 @@ export default function LoginForm() {
     fetch("http://localhost:3000/api/auth/login", {
       method: "POST",
       body: JSON.stringify(formData),
+      headers: {
+        "content-type": "application/json",
+      },
     })
       .then((res) => {
-        console.log(res);
+       
+        return res.json();
       })
+      .then((resBody: LoginResponse) => setToken(resBody.responseObj.token))
+
       .catch((error) => console.error("Error not user:", error));
   };
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -27,11 +48,11 @@ export default function LoginForm() {
     setFormData({ ...formData, [name]: value });
   };
 
-
   return (
     <div>
+      <button onClick={() => setCurrentPage("Home")}>Home</button>
       <form className="form" onSubmit={handleSubmit}>
-        <button onClick={() => setCurrentPage("Home")}>Home</button>
+        
         <div className="input-span">
           <label htmlFor="email" className="label">
             Email
@@ -63,7 +84,9 @@ export default function LoginForm() {
       </form>
       <div className="span">
         Don't have an account?{" "}
-        <button onClick={() => setCurrentPage("UserRegistration")}>Sign up</button>
+        <button onClick={() => setCurrentPage("UserRegistration")}>
+          Sign up
+        </button>
       </div>
     </div>
   );

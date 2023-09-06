@@ -7,6 +7,7 @@ import Home from "../Home/Home";
 import NewTripForm from "../NewTripForm/NewTripForm";
 import LoginForm from '../UserLogin/UserLogin';
 import SignupForm from '../UserRegistration/UserRegistration';
+import EditTripForm from '../UpdateTripForm/UpdateTripForm'
 
 
 
@@ -37,6 +38,8 @@ export default function Main() {
         return <LoginForm></LoginForm>
       case "UserRegistration" :
         return <SignupForm></SignupForm>   
+      case "EditTripForm" :
+        return <EditTripForm tripId={currentID}></EditTripForm>  
 
       default:
         return <Home/> 

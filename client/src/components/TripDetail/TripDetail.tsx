@@ -1,6 +1,7 @@
 import { useContext, useState, useEffect } from "react";
 import { UsePageContext } from "../ContextPage/ContextPage";
 import "./TripDetails.css";
+import {TokenContext} from '../ContextToken/ContextToken';
 
 interface Trip {
   id: string;
@@ -19,10 +20,13 @@ interface TripDetailsProps {
 }
 
 export default function TripDetails(props: TripDetailsProps) {
+  const contextToken = useContext(TokenContext);
+  if(!contextToken) return null;
   const [trip, setTrip] = useState<Trip | null>();
   const context = useContext(UsePageContext);
   if (!context) return null;
   const { currentPage, setCurrentPage } = context;
+  const { token } = contextToken
 
   useEffect(() => {
     fetch(`http://localhost:3000/api/trips/${props.tripId}`)
@@ -33,6 +37,14 @@ export default function TripDetails(props: TripDetailsProps) {
 
   if (!trip) {
     return <div>Loading...</div>;
+  }
+
+  const hendleEditPage = () => {
+    if(token === null) { 
+      alert("you are not a registered user")
+      return
+    }
+    setCurrentPage("EditTripForm");
   }
 
   return (
@@ -55,6 +67,7 @@ export default function TripDetails(props: TripDetailsProps) {
 
       </ul>
       <button onClick={() => setCurrentPage("Trips")}>מעבר לכל הטיולים</button>
+      <button onClick={hendleEditPage}>Edit trip</button>
     </div>
   );
 }

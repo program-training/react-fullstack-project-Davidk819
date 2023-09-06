@@ -6,7 +6,9 @@ import { getUserByEmail, createUser } from "../utils/users";
 // User registration
 export const registerController = (req: Request, res: Response) => {
   const { email, password, role } = req.body;
+  console.log("🚀 ~ file: auth.ts:9 ~ registerController ~ req.body:", req.body)
   console.log(req.body);
+  console.log("🚀 ~ file: auth.ts:10 ~ registerController ~ req.body:", req.body)
 
   const requestingUser = { email, password, role };
 
@@ -46,10 +48,12 @@ export const loginController = (
   next: NextFunction
 ) => {
   const { email, password } = req.body;
+  console.log("🚀 ~ file: auth.ts:49 ~ req.body:", req.body)
 
   // Find the user by email
   const user = getUserByEmail(email);
-
+  console.log("🚀 ~ file: auth.ts:52 ~ user:", user)
+  
   // Check if the user exists and the password matches (in a real app, compare hashed passwords)
   if (!user || user.password !== password) {
     return res.status(401).json({ error: "Invalid credentials" });
