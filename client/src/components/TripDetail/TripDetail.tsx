@@ -1,6 +1,6 @@
 import { useContext, useState, useEffect } from "react";
 import { UsePageContext } from "../ContextPage/ContextPage";
-import './TripDetails.css'
+import "./TripDetails.css";
 
 interface Trip {
   id: string;
@@ -18,7 +18,7 @@ interface TripDetailsProps {
   tripId: string;
 }
 
-export default function TripDetails(props:TripDetailsProps) {
+export default function TripDetails(props: TripDetailsProps) {
   const [trip, setTrip] = useState<Trip | null>();
   const context = useContext(UsePageContext);
   if (!context) return null;
@@ -32,12 +32,12 @@ export default function TripDetails(props:TripDetailsProps) {
   }, []);
 
   if (!trip) {
-    return <div>Loading...</div>; 
+    return <div>Loading...</div>;
   }
 
   return (
     <div className="card-details">
-      <button onClick={() => setCurrentPage('Home')}>Home</button>
+      <button onClick={() => setCurrentPage("Home")}>Home</button>
       <h1>{trip.name}</h1>
       <img src={trip.image} alt={trip.name} />
       <p>יעד: {trip.destination}</p>
@@ -48,13 +48,13 @@ export default function TripDetails(props:TripDetailsProps) {
       <h2>פעילויות:</h2>
 
       <ul>
-        {trip.activities.map((activity, index) => (
-          <li key={index}>{activity}</li>
-        ))}
+        {trip.activities &&
+          trip.activities.map((activity, index) => (
+            <li key={index}>{activity}</li>
+          ))}
+
       </ul>
-      <button onClick={() => setCurrentPage("Trips")}>
-        מעבר לכל הטיולים
-      </button>
+      <button onClick={() => setCurrentPage("Trips")}>מעבר לכל הטיולים</button>
     </div>
   );
 }

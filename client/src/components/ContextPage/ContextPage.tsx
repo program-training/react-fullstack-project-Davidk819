@@ -1,6 +1,6 @@
 import React, { createContext, useState } from 'react';
 
-type Page = 'Home' | 'Trips' | 'TripDetails' | 'UpdateTrip' | 'UserLogin' | 'NewTripForm' | Details;
+type Page = 'Home' | 'Trips' | 'TripDetails' | 'UpdateTrip' | 'UserLogin' | 'NewTripForm' | "UserRegistration" | Details;
 
 interface Details {
     id: string

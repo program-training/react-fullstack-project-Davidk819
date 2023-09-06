@@ -23,9 +23,8 @@ export default function Trips() {
   const contextID = useContext(TripIDContext)
   if(!contextID) return null;
   const { setCurrentTripID } = contextID;
-  const { currentPage, setCurrentPage } = context;
+  const { setCurrentPage } = context;
   const [trips, setTrips] = useState<Trip[]>([]);
-  const [trip, setTrip] = useState<Trip | null>(null);
   
   useEffect(() => {
     fetch("http://localhost:3000/api/trips")
